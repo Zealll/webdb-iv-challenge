@@ -44,6 +44,8 @@ exports.up = function(knex, Promise) {
         .onUpdate('CASCADE');
 
       tbl.float('quantity', precision, scale)
+
+      tbl.string('unit', 20).notNullable()
   })
 };
 
