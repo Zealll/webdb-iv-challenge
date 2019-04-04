@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
 
   .createTable('recipes', tbl => {
       tbl.increments()
-      tbl.string('instructions', 200).notNullable()
+      tbl.string('name', 200).notNullable().unique()
       tbl.integer('dish_id')
          .unsigned()
          .notNullable()
@@ -21,6 +21,20 @@ exports.up = function(knex, Promise) {
   .createTable('ingredients', tbl => {
       tbl.increments()
       tbl.string('name', 100).notNullable().unique()
+  })
+
+  .createTable('instructions', tbl => {
+      tbl.increments()
+      tbl.integer('recipe_id')
+         .notNullable()
+         .unsigned()
+         .references('id')
+         .inTable('recipes')
+      
+      tbl.integer('step_number').unique()
+
+      tbl.string('step_description').notNullable()
+
   })
 
   .createTable('recipes_ingredients', tbl => {
@@ -55,4 +69,5 @@ exports.down = function(knex, Promise) {
     .dropTableIfExists('ingerdients')
     .dropTableIfExists('recipes')
     .dropTableIfExists('dishes')
+    .dropTableIfExists('instructions')
 };
