@@ -37,6 +37,13 @@ router.get('/:id', (req, res) => {
 
 })
 
+router.get('/blah/recipe', (req, res) => {
+    db
+    .getRecipes()
+    .then(recipes => res.json(recipes))
+    .catch(error => res.status(500).json(error))
+})
+
 
 
 

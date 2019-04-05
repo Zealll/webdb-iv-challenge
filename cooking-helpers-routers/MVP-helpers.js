@@ -4,6 +4,7 @@ module.exports = {
     getDishes,
     addDish,
     getDish,
+    getRecipes,
 }
 
 function getDishes() {
@@ -22,4 +23,10 @@ function getDish(id) {
     .join('instructions as ins', 'ins.recipe_id', 'r.id')
     .select('d.id', 'd.name', 'r.name as Recipe name', 'ins.step_number', 'ins.step_description')
     .where('d.id', id)
+}
+
+function getRecipes() {
+    return db('recipes as r')
+    .join('dishes as d', 'd.id', 'r.dish_id')
+    .select('d.name as Recipe Dish Name', 'r.name as Recipe Name')
 }
