@@ -5,7 +5,8 @@ module.exports = {
     addDish,
     getDish,
     getRecipes,
-    addRecipe
+    addRecipe,
+
 }
 
 function getDishes() {
@@ -37,3 +38,19 @@ function addRecipe(recipe) {
     .insert(recipe)
     .then(ids => ids[0])
 }
+
+// function getDishById(id) {
+//     let data = db('dishes as d')
+
+//     data
+//     .where('d.id', id)
+
+//     const promises = [data, this.getRecipes(id)]
+//     return Promise.all(promises).then(function(results) {
+//         let [dishes, recipes] = results
+
+//         dishes.recipes = recipes
+
+//         return mappers.dishesToBody(dishes)
+//     })
+// }
