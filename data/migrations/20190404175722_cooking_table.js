@@ -31,7 +31,7 @@ exports.up = function(knex, Promise) {
          .references('id')
          .inTable('recipes')
       
-      tbl.integer('step_number').unique()
+      tbl.integer('step_number')
 
       tbl.string('step_description').notNullable()
 
@@ -57,7 +57,7 @@ exports.up = function(knex, Promise) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
 
-      tbl.float('quantity', precision, scale)
+      tbl.float('quantity')
 
       tbl.string('unit', 20).notNullable()
   })
