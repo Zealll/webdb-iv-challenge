@@ -25,6 +25,18 @@ router.post('/', (req, res) => {
     .catch(error => res.status(500).json(error))
 })
 
+router.get('/:id', (req, res) => {
+    const id = req.params.id
+
+    db
+    .getDish(id)
+    .then(dish => {
+        res.json(dish)
+    })
+    .catch(error => res.status(500).json(error))
+
+})
+
 
 
 
