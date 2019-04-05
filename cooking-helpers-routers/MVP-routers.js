@@ -37,11 +37,22 @@ router.get('/:id', (req, res) => {
 
 })
 
-router.get('/blah/recipe', (req, res) => {
+router.get('/blah/recipes', (req, res) => {
     db
     .getRecipes()
     .then(recipes => res.json(recipes))
     .catch(error => res.status(500).json(error))
+})
+
+router.post('/blah/recipes', (req, res) => {
+    const body = req.body
+
+    db
+    .addRecipe(body)
+    .then(newRecipe => {
+        res.status(201)
+        .json({message: `ID for the new Recipe is ${newRecipe}`})
+    })
 })
 
 

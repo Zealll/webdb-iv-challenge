@@ -5,6 +5,7 @@ module.exports = {
     addDish,
     getDish,
     getRecipes,
+    addRecipe
 }
 
 function getDishes() {
@@ -29,4 +30,10 @@ function getRecipes() {
     return db('recipes as r')
     .join('dishes as d', 'd.id', 'r.dish_id')
     .select('d.name as Recipe Dish Name', 'r.name as Recipe Name')
+}
+
+function addRecipe(recipe) {
+    return db('recipes')
+    .insert(recipe)
+    .then(ids => ids[0])
 }
